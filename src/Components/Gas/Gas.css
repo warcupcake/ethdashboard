@@ -1,0 +1,12 @@
+table{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid;
+}
+
+span {
+    display: inline-block;
+}
+
+.logo {
+    height: 5vmin;
+}
