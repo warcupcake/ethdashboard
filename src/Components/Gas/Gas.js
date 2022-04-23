@@ -1,26 +1,38 @@
 import React from 'react';
 import './Gas.css'
-import etherscan from '../๊Util/etherscan';
+import ethereum from '../util/ethereum';
+import avalanche from '../util/avalanche';
 import ethLogo from '../App/eth-diamond-purple@2x.png'
 
 class Gas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ethGas : {}
+            ethGas : '',
+            avaxGas : ''
         }
-        this.getGasPrices = this.getGasPrices.bind(this);
+        this.getAllChainGasPrice = this.getAllChainGasPrice.bind(this);
+        this.getEthGasPrice = this.getEthGasPrice.bind(this);
+        this.getAVAXGasPrice = this.getAVAXGasPrice.bind(this);
     }
 
-    getGasPrices() {
-        etherscan.getGasOracle().then(response => {
-            console.log(response.ProposeGasPrice)
-            this.setState({ ethGas: {
-                SafeGasPrice : response.SafeGasPrice,
-                ProposeGasPrice : response.ProposeGasPrice,
-                FastGasPrice : response.FastGasPrice
-            }})
-        });
+    getAllChainGasPrice() {
+      this.getEthGasPrice();
+      this.getAVAXGasPrice();
+    }
+
+    getEthGasPrice() {
+        ethereum.getEthGas().then(response => {
+          console.log(`ETH Gas from web3.js = ${response}`);
+          this.setState( { ethGas : response } );
+        })
+    }
+
+    getAVAXGasPrice() {
+        avalanche.getAVAXGas().then(response => {
+          console.log(`AVAX Gas from web3.js = ${response}`);
+          this.setState( { avaxGas : response });
+        } )
     }
 
     render() {
@@ -28,15 +40,19 @@ class Gas extends React.Component {
             <div>
                 <table>
                     <tr>
-                        <th> Chain </th> 
-                        <th> Gas Price </th>
+                        <th> Chain </th>
+                        <th> Gas Price (GWEI) </th>
                     </tr>
                     <tr>
-                        <td> <span> <img className='logo' src= {ethLogo}/> </span> <span> Ethereum </span> </td>
-                        <td> {this.state.ethGas.ProposeGasPrice} </td>
+                        <td> <span> <img className='logo' src= {ethLogo} alt = ''/> </span> </td>
+                        <td> {this.state.ethGas} </td>
+                    </tr>
+                    <tr>
+                        <td> AVAX </td>
+                        <td> {this.state.avaxGas} </td>
                     </tr>
                 </table>
-                <button onClick={this.getGasPrices}> Refresh Gas </button>
+                <button onClick={this.getAllChainGasPrice}> Refresh Gas </button>
             </div>
         )
     }

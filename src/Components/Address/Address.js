@@ -1,5 +1,6 @@
 import React from "react";
 import './Address.css'
+import ethereum from '../util/ethereum';
 
 class Address extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Address extends React.Component {
     }
 
     lookUpENS() {
-        this.props.ens.getAddress(this.state.ens)
+        ethereum.getEthAddress(this.state.ens)
             .then(response => this.setState({address: response}))
             .catch(err => {
                 this.setState({address: 'There Was An Error Searching Your ENS. Please Try Again'})

@@ -1,6 +1,8 @@
-table{
+table, th, td {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid;
+    border-left: 1px solid;
+    border-collapse: collapse;
 }
 
 span {

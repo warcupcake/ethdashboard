@@ -6,11 +6,18 @@ const web3 = new Web3(new Web3.providers.HttpProvider(endpoint));
 
 const avalanche = {
 
-  getAddress(address) {
+  getAVAXBalance(address) {
     console.log(`Getting AVAX balance of ${address}`);
     return web3.eth.getBalance(address).then(response => {
       return Web3.utils.fromWei(response, 'ether')
     });
+  },
+
+  getAVAXGas() {
+    console.log(`Getting AVAX gas from web3.js`);
+    return web3.eth.getGasPrice().then(response => {
+      return Web3.utils.fromWei(response, 'GWEI');
+    })
   }
 }
 export default avalanche;
