@@ -1,4 +1,4 @@
-# Eth Dashbaord
+# Eth Dashboaord
 
 This project is used as an exercise in developing a front-end application to interact with various web3 APIs.
 
