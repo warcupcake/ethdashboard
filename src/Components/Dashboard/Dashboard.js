@@ -1,8 +1,12 @@
-import React from "react";
-import './Address.css'
+import Gas from '../Gas/Gas';
+import Balance from '../Balance/Balance';
+import AddressSearchBar from '../AddressSearchBar/AddressSearchBar';
 import ethereum from '../util/ethereum';
 
-class Address extends React.Component {
+import React from 'react';
+import './Dashboard.css';
+
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -26,14 +30,16 @@ class Address extends React.Component {
     render() {
         return(
             <div>
-                <div className = "AddressBar">
-                    <input placeholder='Enter Address Here' onChange={this.handleChange}/>
+                <div>
+                    <AddressSearchBar handleChange = {this.handleChange} lookUpENS = {this.lookUpENS} address = {this.state.address}/>
                 </div>
-                <button onClick={this.lookUpENS}>Look Up ENS</button>
-                <p>{this.state.address}</p>
+                <div className="row">
+                    <div className="column"> <Balance address = {this.state.address} /> </div>
+                    <div className="column"> <Gas/> </div>
+                </div>
             </div>
         )
     }
 }
 
-export default Address
+export default Dashboard;

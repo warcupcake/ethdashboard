@@ -2,7 +2,6 @@ table, th, td {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: none;
     border-collapse: collapse;
-    height: 5vmin;  
 }
 
 span {
@@ -10,5 +9,5 @@ span {
 }
 
 .logo {
-    height: 5vmin;
+    height: 3vmin;
 }

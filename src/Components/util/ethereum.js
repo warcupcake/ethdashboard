@@ -15,7 +15,14 @@ const ethereum = {
     return web3.eth.getGasPrice().then(response => {
       return Web3.utils.fromWei(response, 'GWEI')
     });
-  }
+  },
+
+  getEthBalance(address) {
+    console.log(`Getting ETH balance of ${address}`);
+    return web3.eth.getBalance(address).then(response => {
+      return Web3.utils.fromWei(response, 'ether')
+    });
+  },
 }
 
 export default ethereum;

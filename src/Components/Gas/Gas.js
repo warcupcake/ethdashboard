@@ -2,7 +2,6 @@ import React from 'react';
 import './Gas.css'
 import ethereum from '../util/ethereum';
 import avalanche from '../util/avalanche';
-import ethLogo from '../App/eth-diamond-purple@2x.png'
 
 class Gas extends React.Component {
     constructor(props) {
@@ -39,20 +38,21 @@ class Gas extends React.Component {
         return(
             <div>
                 <table>
+                    <tbody>
                     <tr>
-                        <th> Chain </th>
-                        <th> Gas Price (GWEI) </th>
+                        <th> Gas (GWEI) </th>
                     </tr>
                     <tr>
-                        <td> <span> <img className='logo' src= {ethLogo} alt = ''/> </span> </td>
                         <td> {this.state.ethGas} </td>
                     </tr>
                     <tr>
-                        <td> AVAX </td>
                         <td> {this.state.avaxGas} </td>
                     </tr>
+                    <tr>
+                        <td> <button onClick={this.getAllChainGasPrice}> Refresh Gas </button> </td>
+                    </tr>
+                    </tbody>
                 </table>
-                <button onClick={this.getAllChainGasPrice}> Refresh Gas </button>
             </div>
         )
     }
