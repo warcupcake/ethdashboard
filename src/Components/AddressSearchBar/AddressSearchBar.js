@@ -10,7 +10,7 @@ class AddressSearchBar extends React.Component {
                 <div className = "AddressBar">
                     <input placeholder='Enter ENS Here' onChange={this.props.handleChange}/>
                 </div>
-                <button onClick={this.props.lookUpENS}>Look Up Your Address</button>
+                <button onClick={this.props.lookUpENS}>Look Up Address</button>
                 <p>{this.props.address}</p>
             </div>
         )

@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.lookUpENS = this.lookUpENS.bind(this);
-        this.state = {address: '', ens: ''}
+        this.state = { ens: ''}
     }
 
     handleChange(event) {
@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
 
     lookUpENS() {
         ethereum.getEthAddress(this.state.ens)
-            .then(response => this.setState({address: response}))
+            .then(response => this.props.changeAddress(response))
             .catch(err => {
                 this.setState({address: 'There Was An Error Searching Your ENS. Please Try Again'})
                 console.log(err)
@@ -31,10 +31,10 @@ class Dashboard extends React.Component {
         return(
             <div>
                 <div>
-                    <AddressSearchBar handleChange = {this.handleChange} lookUpENS = {this.lookUpENS} address = {this.state.address}/>
+                    <AddressSearchBar handleChange = {this.handleChange} lookUpENS = {this.lookUpENS} address = {this.props.address}/>
                 </div>
                 <div className="row">
-                    <div className="column"> <Balance address = {this.state.address} /> </div>
+                    <div className="column"> <Balance address = {this.props.address} /> </div>
                     <div className="column"> <Gas/> </div>
                 </div>
             </div>

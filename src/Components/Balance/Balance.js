@@ -26,7 +26,7 @@ class Balance extends React.Component{
       <div>
         <table>
           <tbody>
-            <tr>
+            <tr>  
               <th>  </th>
               <th>Balance</th>
             </tr>
